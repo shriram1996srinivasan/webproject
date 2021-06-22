@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 //import org.apache.poi.hpsf.Section;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -33,13 +35,16 @@ public class Hooks {
 	@Before
 	public static void beforeHooks(Scenario scenario) throws Exception {
 		try {
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-SS");
+			String dt = LocalDateTime.now().format(format);
+			
 			s=scenario;
 			doc = new XWPFDocument();
 			File dirfile1 = new File("report\\Word");
 			if(!dirfile1.exists()) {
 				dirfile1.mkdir();
 			}
-			f=new File("report\\Word\\"+ scenario.getName() +"_"+System.currentTimeMillis()+".docx");
+			f=new File("report\\Word\\"+ scenario.getName() +"_"+dt+".docx");
 			fi = new FileOutputStream(f);
 			doc.write(fi);
 			fi.close();
@@ -50,28 +55,28 @@ public class Hooks {
 			if(!dirfile.exists()) {
 				dirfile.mkdir();
 			}
-			File file = new File("report\\htmlReports\\" + scenario.getName() + ".html");
-			int count = 0;
-			String filename = null;
-			while (file.exists()) {
-				System.out.println(file.getParentFile().list());
-				filename = file.getName();
-				if (filename.replaceAll(scenario.getName(), "").replaceAll(".html", "").contains("(")) {
-					count = Integer.valueOf(
-							filename.replaceAll(scenario.getName(), "").replaceAll(".html", "").replaceAll("[()]", ""))
-							+ 1;
-				} else if (filename.replaceAll(scenario.getName(), "").replaceAll(".html", "").contains("")) {
-					count = 1;
-				}
-				filename = scenario.getName().concat("(" + String.valueOf(count) + ")");
-				// file.renameTo(new File("E:\\Reports\\" + filename + ".html"));
-				file = new File("report\\htmlReports\\" + filename + ".html");
-//				System.out.println(file.getAbsolutePath());
-
-			}
-			file = new File("report\\htmlReports\\" + scenario.getName() + ".html");
-			file.renameTo(new File("report\\htmlReports\\" + filename + ".html"));
-			reports = new ExtentReports("report\\htmlReports\\" + scenario.getName() + ".html");
+//			File file = new File("report\\htmlReports\\" + scenario.getName() + dt +".html");
+//			int count = 0;
+//			String filename = null;
+//			while (file.exists()) {
+//				System.out.println(file.getParentFile().list());
+//				filename = file.getName();
+//				if (filename.replaceAll(scenario.getName(), "").replaceAll(".html", "").contains("(")) {
+//					count = Integer.valueOf(
+//							filename.replaceAll(scenario.getName(), "").replaceAll(".html", "").replaceAll("[()]", ""))
+//							+ 1;
+//				} else if (filename.replaceAll(scenario.getName(), "").replaceAll(".html", "").contains("")) {
+//					count = 1;
+//				}
+//				filename = scenario.getName().concat("(" + String.valueOf(count) + ")");
+//				// file.renameTo(new File("E:\\Reports\\" + filename + ".html"));
+//				file = new File("report\\htmlReports\\" + filename + ".html");
+////				System.out.println(file.getAbsolutePath());
+//
+//			}
+//			file = new File("report\\htmlReports\\" + scenario.getName() + ".html");
+//			file.renameTo(new File("report\\htmlReports\\" + filename + ".html"));
+			reports = new ExtentReports("report\\htmlReports\\" + scenario.getName()+"_" + dt+".html");
 			test = reports.startTest(scenario.getName());
 		} catch (Exception e) {
 			e.printStackTrace();
