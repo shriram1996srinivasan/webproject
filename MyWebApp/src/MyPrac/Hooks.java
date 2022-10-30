@@ -98,6 +98,15 @@ public class Hooks {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(scenario.getStatus().equalsIgnoreCase("failed")) {
+			CommonUtil util = new CommonUtil();
+			try {
+				util.reports("pass", true, "Home Page");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		CommonUtil.getDriver().close();
 		CommonUtil.getDriver().quit();
 		CommonUtil.browserInvoked = false;

@@ -24,6 +24,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 import org.testng.TestException;
 
 import cucumber.api.DataTable;
@@ -36,8 +37,10 @@ public class GoToURL extends CommonUtil {
 	@FindBy(xpath = "//input[@value='Google Search']")
 	private WebElement search;
 
+	
 	public void gotourl(String url) throws Exception {
 		try {
+			Actions a = new Actions(getDriver());
 			getDriver().get(url);
 			System.out.println("going to URL");
 			Thread.sleep(5000);

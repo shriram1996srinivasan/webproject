@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 //import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +31,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.openqa.selenium.JavascriptExecutor;
 //import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,6 +43,7 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 //import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 //import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,7 +56,13 @@ public class CommonUtil {
 	static WebDriver drive;
 	// static HashMap<String,List<File>> runt= new HashMap<>();
 	// static List<File> ff = new ArrayList<>();
-
+	/***
+	 * @author shriram
+	 * @param caption
+	 * @return
+	 * @throws IOException
+	 * @throws InvalidFormatException
+	 */
 	public String screenCapture(String caption) throws IOException, InvalidFormatException {
 		System.out.println("SCREENCAPTURE");
 		String output = "";
@@ -83,7 +93,7 @@ public class CommonUtil {
 			Hooks.run.addBreak();
 			Hooks.run.addPicture(new FileInputStream(dest), format, "New", Units.toEMU(450), Units.toEMU(300));
 			Hooks.run.addBreak();
-
+			
 		} catch (IOException e) {
 		}
 		System.out.println("returning " + dest.getAbsolutePath());
@@ -170,15 +180,24 @@ public class CommonUtil {
 //		System.setProperty("webdriver.chrome.verboseLogging", "true");
 		WebDriver driver = drive;
 		if (browserInvoked == false) {
-//			DesiredCapabilities caps = DesiredCapabilities.chrome();
+			DesiredCapabilities caps = DesiredCapabilities.chrome();
+			caps.setPlatform(Platform.WINDOWS);
 //			LoggingPreferences logPrefs = new LoggingPreferences();
 //			logPrefs.enable(LogType.BROWSER, Level.ALL);
 			ChromeOptions options = new ChromeOptions();
 			// add the headless argument
-			options.addArguments("headless");
+//			options.addArguments("headless");
 //			options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 //			options.addArguments("verbose");
 			driver = new ChromeDriver();
+//			URL url=null;
+//			try {
+//				url = new URL("http://192.168.0.103:6060");
+//			} catch (MalformedURLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			driver = new RemoteWebDriver(url, caps);
 			// driver = new InternetExplorerDriver();
 			// driver = new HtmlUnitDriver();
 			drive = driver;
@@ -244,14 +263,14 @@ public class CommonUtil {
 	}
 
 	public static void main(String[] args) {
-		String path = "123";
+		String path = "F:\\Doc\\Harini Exam";
 
-		for (int i = 0; i < 15; i++) {
-			System.out.print(" ");
-		}
-		System.out.print(path);
-		// System.out.println(path);
-		// System.out.println(FilenameUtils.separatorsToWindows(path));
+//		for (int i = 0; i < 15; i++) {
+//			System.out.print(" ");
+//		}
+//		System.out.print(path);
+		 System.out.println(path);
+		 System.out.println(FilenameUtils.separatorsToWindows(path));
 	}
 
 }

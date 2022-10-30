@@ -116,7 +116,7 @@ public class RestPrac {
 //		jj.getJSONObject("gata").put("id", "aaa");
 		
 		JsonPath j = new JsonPath(s);
-		System.out.println(j.get("gate.id"));
+		System.out.println(j.get("gate.id").toString());
 		
 	}
 }
