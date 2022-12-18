@@ -9,9 +9,21 @@
 	
 	<bean id="myFor" class="com.practice.springg.HappyFortune">
     </bean>
+    <context:property-placeholder location="classpath:com/practice/springg/config.properties"/>
     <!-- Define your beans here -->
     <bean id="mycoach" class="com.practice.springg.Baseball">
     <constructor-arg ref = "myFor"></constructor-arg>
+    </bean>
+    <bean id="myCcoach" class="com.practice.springg.CricketCoach"
+    init-method="start"
+    destroy-method="end"
+    >
+		<!-- Setter injection -->
+		<property name="fortuneService" ref="myFor"></property>
+		<property name="teamNAme" value="CSK"></property>
+		<property name="jers" value="yellow"></property>
+		<property name="cap" value="${cricket_captain}"/>
+		<property name="rol" value="${role}"/>
     </bean>
 </beans>
 
