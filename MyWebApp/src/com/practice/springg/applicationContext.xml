@@ -7,24 +7,27 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<bean id="myFor" class="com.practice.springg.HappyFortune">
-    </bean>
-    <context:property-placeholder location="classpath:com/practice/springg/config.properties"/>
+	<!-- <bean id="myFor" class="com.practice.springg.HappyFortune">
+    </bean> -->
+    
     <!-- Define your beans here -->
-    <bean id="mycoach" class="com.practice.springg.Baseball">
+    <!-- <bean id="mycoach" class="com.practice.springg.Baseball">
     <constructor-arg ref = "myFor"></constructor-arg>
-    </bean>
-    <bean id="myCcoach" class="com.practice.springg.CricketCoach"
+    </bean> -->
+    <!-- <bean id="myCcoach" class="com.practice.springg.CricketCoach"
     init-method="start"
     destroy-method="end"
     >
-		<!-- Setter injection -->
+		Setter injection
 		<property name="fortuneService" ref="myFor"></property>
 		<property name="teamNAme" value="CSK"></property>
 		<property name="jers" value="yellow"></property>
 		<property name="cap" value="${cricket_captain}"/>
 		<property name="rol" value="${role}"/>
-    </bean>
+    </bean> -->
+    <context:property-placeholder location="classpath:com/practice/springg/config.properties"/>
+    <context:component-scan base-package="com.practice.springg"></context:component-scan>
+    
 </beans>
 
 

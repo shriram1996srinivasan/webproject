@@ -1,6 +1,5 @@
 package com.practice.hackerearth;
 
-import org.bouncycastle.asn1.x509.qualified.TypeOfBiometricData;
 
 public class Commo implements a,b{
 

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
@@ -50,6 +53,8 @@ import org.openqa.selenium.support.PageFactory;
 //import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.relevantcodes.extentreports.LogStatus;
+
+//import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CommonUtil {
 	static boolean browserInvoked = false;
@@ -93,7 +98,6 @@ public class CommonUtil {
 			Hooks.run.addBreak();
 			Hooks.run.addPicture(new FileInputStream(dest), format, "New", Units.toEMU(450), Units.toEMU(300));
 			Hooks.run.addBreak();
-			
 		} catch (IOException e) {
 		}
 		System.out.println("returning " + dest.getAbsolutePath());
@@ -176,20 +180,26 @@ public class CommonUtil {
 	}
 
 	public static WebDriver getDriver() {
-		System.setProperty("webdriver.chrome.driver", "test.resources/Driver/chromedriver.exe");
+//		System.setProperty("webdriver.chrome.driver", "test.resources/Driver/chromedriver.exe");
+//		WebDriverManager.chromedriver().setup();
 //		System.setProperty("webdriver.chrome.verboseLogging", "true");
 		WebDriver driver = drive;
 		if (browserInvoked == false) {
-			DesiredCapabilities caps = DesiredCapabilities.chrome();
-			caps.setPlatform(Platform.WINDOWS);
+//			DesiredCapabilities caps = DesiredCapabilities.chrome();
+//			caps.setPlatform(Platform.WINDOWS);
 //			LoggingPreferences logPrefs = new LoggingPreferences();
 //			logPrefs.enable(LogType.BROWSER, Level.ALL);
-			ChromeOptions options = new ChromeOptions();
+//			ChromeOptions options = new ChromeOptions();
 			// add the headless argument
+//			options.addArguments("--incognito");
 //			options.addArguments("headless");
 //			options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 //			options.addArguments("verbose");
-			driver = new ChromeDriver();
+			ChromeOptions bsop = new ChromeOptions();
+			bsop.addArguments("--incognito");
+			driver = new ChromeDriver(bsop
+					);
+//			driver = new FirefoxDriver();
 //			URL url=null;
 //			try {
 //				url = new URL("http://192.168.0.103:6060");
@@ -204,6 +214,7 @@ public class CommonUtil {
 			System.out.println("Initializing Chrome");
 			browserInvoked = true;
 			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 			return driver;
 		}
 		return driver;
@@ -259,6 +270,7 @@ public class CommonUtil {
 
 	@SuppressWarnings({ "hiding" })
 	public static <T> T getPage(Class<T> in) {
+		System.out.println("initialize page");
 		return PageFactory.initElements(getDriver(), in);
 	}
 

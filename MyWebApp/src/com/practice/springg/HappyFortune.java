@@ -1,5 +1,8 @@
 package com.practice.springg;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class HappyFortune implements FortumeService {
 
 	@Override

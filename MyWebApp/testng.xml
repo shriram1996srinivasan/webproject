@@ -3,7 +3,7 @@
 <suite thread-count="1" name="Suite" parallel="classes">
   <test thread-count="1" name="Test" parallel="classes">
     <classes>
-      <class name="MyPrac.TestRunner"></class>
+      <class name="src.MyPrac.TestRunner"></class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

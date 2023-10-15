@@ -40,6 +40,7 @@ public class GoToURL extends CommonUtil {
 	
 	public void gotourl(String url) throws Exception {
 		try {
+			System.out.println("aadhaar url");
 			Actions a = new Actions(getDriver());
 			getDriver().get(url);
 			System.out.println("going to URL");

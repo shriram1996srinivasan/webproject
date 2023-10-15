@@ -9,7 +9,6 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.bouncycastle.asn1.x509.qualified.TypeOfBiometricData;
 
 public class Commo2{
 
