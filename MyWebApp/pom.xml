@@ -21,7 +21,7 @@
 				<configuration>
 					<!-- <includes> <exclude> **/TestRunner.java </exclude> </includes> -->
 					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
+						<suiteXmlFile>MyWebApp/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
