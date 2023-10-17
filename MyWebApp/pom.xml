@@ -348,5 +348,5 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 			<name>a0zwwcqhatw7r-artifactory-primary-0-snapshots</name>
 			<url>https://testappshri.jfrog.io/artifactory/libs-snapshot</url>
 		</snapshotRepository>
-	</distributionManagement>--!>
+	</distributionManagement>-->
 </project>
