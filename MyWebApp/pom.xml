@@ -25,7 +25,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 						<exclude> **/TestRunner.java </exclude>
 					</includes>
 					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
+						<suiteXmlFile>*/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
@@ -342,11 +342,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 
 	</dependencies>
 
-	<distributionManagement>
+	<!--<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>a0zwwcqhatw7r-artifactory-primary-0-snapshots</name>
 			<url>https://testappshri.jfrog.io/artifactory/libs-snapshot</url>
 		</snapshotRepository>
-	</distributionManagement>
+	</distributionManagement>--!>
 </project>
